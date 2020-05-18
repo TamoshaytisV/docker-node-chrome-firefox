@@ -1,9 +1,6 @@
-FROM node:12
+FROM node:10.19.0
 
-LABEL Maintainer="kekel87 <https://github.com/kekel87>" \
-    Description="Docker for node CI (with gitlab)."
-
-ARG FIREFOX_VERSION=69.0
+ARG FIREFOX_VERSION=76.0
 
 USER root
     # Install chrome
@@ -23,13 +20,6 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/locale/* /var/cache/debconf/*-old /usr/share/doc/*
 
-# versions of local tools
-# RUN node -v \
-#     && npm -v \
-#     && yarn -v \
-#     && google-chrome --version \
-#     && firefox --version \
-#     && git --version
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
